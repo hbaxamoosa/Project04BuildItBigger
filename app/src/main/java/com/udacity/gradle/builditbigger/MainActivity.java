@@ -1,19 +1,20 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.baxamoosa.JokeSource;
-import com.baxamoosa.jokedisplay.JokeActivity;
 
 import timber.log.Timber;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    public final static int TEST_JOKE = 0;
+    public final static int RANDOM_JOKE = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +52,6 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             Timber.v("tellJoke(View view)");
         }
-
-        // Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, JokeActivity.class);
-        JokeSource jokeSource = new JokeSource();
-        String joke = jokeSource.getJoke();
-        intent.putExtra(JokeActivity.JOKE_KEY, joke);
-        startActivity(intent);
+        new FetchJokeTask().execute(new Pair<Context, Integer>(this, MainActivity.RANDOM_JOKE));
     }
 }
