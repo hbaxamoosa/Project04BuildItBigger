@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -65,9 +66,17 @@ public class FetchJokeTask extends AsyncTask<Pair<Context, Integer>, Void, Strin
             Timber.v("onPostExecute(String s)");
         }
 
+        if (this.mListener != null) {
+            this.mListener.onComplete(s, mError);
+        }
+
         Intent intent = new Intent(context, JokeActivity.class);
         intent.putExtra(JokeActivity.JOKE_KEY, s);
-        context.startActivity(intent);
+
+        // only starting an activity when the context is prevents an error when running connectedCheck
+        if (context instanceof Activity) {
+            context.startActivity(intent);
+        }
     }
 
     @Override
