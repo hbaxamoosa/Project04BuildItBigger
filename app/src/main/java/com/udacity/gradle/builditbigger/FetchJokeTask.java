@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Pair;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import com.baxamoosa.backend.jokeApi.JokeApi;
@@ -24,6 +25,10 @@ public class FetchJokeTask extends AsyncTask<Pair<Context, Integer>, Void, Strin
     private Exception mError = null;
     private Context context;
     private ProgressBar mSpinner;
+
+    public FetchJokeTask(View view) {
+        mSpinner = (ProgressBar) view.findViewById(R.id.joke_progress_bar);
+    }
 
     @Override
     protected void onPreExecute() {
