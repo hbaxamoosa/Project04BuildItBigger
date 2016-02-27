@@ -54,7 +54,8 @@ public class FetchJokeTask extends AsyncTask<Pair<Context, Integer>, Void, Strin
             return myApiService.getJoke(index).execute().getMyJoke();
         } catch (IOException e) {
             mError = e;
-            return e.getMessage();
+            // return e.getMessage();
+            return context.getString(R.string.no_server);
         }
     }
 

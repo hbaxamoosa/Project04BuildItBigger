@@ -8,6 +8,7 @@
     <!-- Keys and URLs -->
     <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
     <string name="api_root_url">http://10.0.2.2:8080/_ah/api/</string> <!-- this is for a local GCE server -->
+    <string name="no_server">No GCE server available - check to see if GCE AppEngine instance is running.</string>
 
     <!-- Errors -->
     <string name="err_task_cancelled">EndpointsAsyncTask cancelled</string>
